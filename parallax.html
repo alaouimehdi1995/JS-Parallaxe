@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Parallaxe</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Parallaxe</title>
+    </head>
     <body>
         <p>Parallaxe Effect: just move your cursor</p>
         <div>
@@ -18,27 +18,27 @@
         
         </div>
 
-    <script type="text/javascript" src="js/parallaxe.js"></script>
-    <script type="text/javascript">
+        <script type="text/javascript" src="js/parallaxe.js"></script>
+        <script type="text/javascript">
 
 
 
-        var home2=document.getElementById("home2");
-        var home1=document.getElementById("home1");
-        var plane=document.getElementById("plane");
-        var person=document.getElementById("person");
+            var home2=document.getElementById("home2");
+            var home1=document.getElementById("home1");
+            var plane=document.getElementById("plane");
+            var person=document.getElementById("person");
 
 
-        var text=document.getElementById("txt");
-        /*
-        * In parallaxe function, the second argument is degree, it should be positive. Lower degree <=> Larger movement
-        * */
+            var text=document.getElementById("txt");
+            /*
+            * In parallaxe function, the second argument is degree, it should be positive. Lower degree <=> Larger movement
+            * */
 
-        home2.addEventListener('click',parallaxe(home2,1.5),false);
-        home1.addEventListener('click',parallaxe(home1,2),false);
-        plane.addEventListener('click',parallaxe(plane,3),false);
-        person.addEventListener('click',parallaxe(person,4),false);
+            home2.addEventListener('click',parallaxe(home2,1.5),false);
+            home1.addEventListener('click',parallaxe(home1,2),false);
+            plane.addEventListener('click',parallaxe(plane,3),false);
+            person.addEventListener('click',parallaxe(person,4),false);
 
-    </script>
+        </script>
     </body>
 </html>
