@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallaxe</title>
+</head>
+    <body>
+        <p>Parallaxe Effect: just move your cursor</p>
+        <div id="dd">
+            <img id="bg" src="bg.jpg" style="width: 940px;height: 415px;">
+            <img id="home2" src="home2.png" style="position: absolute;top: 170px;left: 700px;">
+            <img id="home1" src="home1.png" style="position: absolute;top: 175px;left: 470px;">
+            <img id="plane" src="plane.png" style="position: absolute;top: 250px;left: 420px;">
+            <img id="person" src="person.png" style="position: absolute;top: 190px;left: 320px;">
+
+
+            <p id="txt" style>
+
+            </p>
+        </div>
+
+    <script type="text/javascript" src="parallaxe.js"></script>
+    <script type="text/javascript">
+
+
+
+        var home2=document.getElementById("home2");
+        var home1=document.getElementById("home1");
+        var plane=document.getElementById("plane");
+        var person=document.getElementById("person");
+
+
+        var text=document.getElementById("txt");
+        /*
+        * In parallaxe function, the second argument is degree, it should be positive. Lower degree <=> Larger movement
+        * */
+
+        home2.addEventListener('click',parallaxe(home2,1.5),false);
+        home1.addEventListener('click',parallaxe(home1,2),false);
+        plane.addEventListener('click',parallaxe(plane,3),false);
+        person.addEventListener('click',parallaxe(person,4),false);
+
+    </script>
+    </body>
+</html>
