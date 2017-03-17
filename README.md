@@ -1,4 +1,4 @@
-<h1><Parallaxe Effect:</h1>
+<h1>Parallaxe Effect:</h1>
 This project contains 3 important files:
 <h4>index.html:</h4>
   -The web page that shows the parallaxe effect
