@@ -1,0 +1,15 @@
+#container{
+    text-align:center;
+    position: relative;
+    margin: 0 auto;
+    border: dashed;
+    border-width:2px;
+    border-color:#00ffaa;
+}
+
+img{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}

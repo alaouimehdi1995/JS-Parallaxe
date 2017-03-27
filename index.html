@@ -2,23 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Parallaxe Effect</title>
+    <title>Parallaxe | Mehdi ALAOUI</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
-    <body>
-        <p>Parallaxe Effect: just move your cursor</p>
-        <div id="container">
-            <img id="bg" src="img/bg.jpg" style="width: 940px;height: 415px;">
-            <img class="layer" degree="3" invert="true" src="img/home2.png" style="position: absolute;top: 170px;left: 700px;">
-            <img class="layer" degree="4" invert="true" src="img/home1.png" style="position: absolute;top: 175px;left: 470px;">
-            <img class="layer" degree="6" src="img/plane.png" style="position: absolute;top: 250px;left: 400px;">
-            <img class="layer" degree="8" src="img/person.png" style="position: absolute;top: 190px;left: 270px;">
+<body style="background-color: black;text-align: center">
+
+    <h2 style="margin:auto;color: white">Parallaxe effect</h2>
+    <h4 style="margin:auto;color: white">realised by: Mehdi ALAOUI</h4><br/>
 
 
-            <p id="txt" style>
+    <div id="container" style="width:40%;height:80%">
+        <img class="layer" degree="2" src="img/layer1.png">
+        <img class="layer" degree="4" src="img/layer2.png">
+        <img class="layer" degree="8" src="img/layer3.png">
+        <img class="layer" degree="12" src="img/layer4.png">
+        <img class="layer" degree="16" src="img/layer5.png">
+    </div>
 
-            </p>
-        </div>
+
+
     <script type="text/javascript" src="js/parallaxe.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-    </body>
+    <script>
+        var container=document.getElementById("container");
+        executeParallaxeOn(container);
+    </script>
+</body>
 </html>
