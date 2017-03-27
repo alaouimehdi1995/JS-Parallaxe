@@ -1,3 +1,7 @@
+body{
+    background-color: black;
+    text-align: center;
+}
 #container{
     text-align:center;
     position: relative;
@@ -12,4 +16,11 @@ img{
     margin-right: auto;
     margin-left: auto;
     width: 100%;
+}
+
+.title{
+    margin:auto;
+    color: white;
+    font-family: 'FreeSerif';
+    letter-spacing: 0.5px;
 }

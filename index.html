@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Parallaxe | Mehdi ALAOUI</title>
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-<body style="background-color: black;text-align: center">
+    <head>
+        <meta charset="UTF-8">
+        <title>Parallaxe | Mehdi ALAOUI</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
 
-    <h2 style="margin:auto;color: white">Parallaxe effect</h2>
-    <h4 style="margin:auto;color: white">realised by: Mehdi ALAOUI</h4><br/>
-
-
-    <div id="container" style="width:40%;height:80%">
-        <img class="layer" degree="2" src="img/layer1.png">
-        <img class="layer" degree="4" src="img/layer2.png">
-        <img class="layer" degree="8" src="img/layer3.png">
-        <img class="layer" degree="12" src="img/layer4.png">
-        <img class="layer" degree="16" src="img/layer5.png">
-    </div>
+        <h2 class="title" style="font-size: 35px;">Parallaxe effect</h2>
+        <h5 class="title">realised by: Mehdi ALAOUI</h5><br/>
 
 
+        <div id="container" style="width:40%;height:80%">
+            <img class="layer" degree="2" src="img/layer1.png" style="opacity: 0.15">
+            <img class="layer" degree="4" src="img/layer2.png" style="opacity: 0.30">
+            <img class="layer" degree="8" src="img/layer3.png" style="opacity: 0.45">
+            <img class="layer" degree="12" src="img/layer4.png" style="opacity: 0.60">
+            <img class="layer" degree="16" src="img/layer5.png" style="opacity: 0.75">
+            <img class="layer" degree="20" src="img/layer6.png" style="opacity: 0.90">
+        </div>
 
-    <script type="text/javascript" src="js/parallaxe.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script>
-        var container=document.getElementById("container");
-        executeParallaxeOn(container);
-    </script>
-</body>
+
+        <script type="text/javascript" src="js/parallaxe.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script>
+            var container=document.getElementById("container");
+            executeParallaxeOn(container);
+        </script>
+
+    </body>
 </html>
