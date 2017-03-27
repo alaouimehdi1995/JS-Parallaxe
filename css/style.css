@@ -2,8 +2,9 @@ body{
     background-color: black;
     text-align: center;
 }
-#container{
+.container{
     text-align:center;
+    display: inline-block;
     position: relative;
     margin: 0 auto;
     border: dashed;
