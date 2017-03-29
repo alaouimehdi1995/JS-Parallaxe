@@ -6,12 +6,10 @@ function executeParallaxeOn(container) {
 
         layers[i].style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
 
-        //getComputedStyle doesn't work with mozilla etc
         if (i) {
 
-            layers[i].style.top =
-                parseFloat(getComputedStyle(layers[0], null).top) + parseFloat(getComputedStyle(container, null).padding) + "px";
-            layers[i].style.left = parseFloat(getComputedStyle(layers[0], null).left) + parseFloat(getComputedStyle(container, null).padding) + "px";
+            layers[i].style.top =parseFloat(window.getComputedStyle(layers[0],null).top) + parseFloat(window.getComputedStyle(container,null).paddingTop) + "px";
+            layers[i].style.left = parseFloat(window.getComputedStyle(layers[0],null).left) + parseFloat(window.getComputedStyle(container,null).paddingLeft) + "px";
 
         }
 
