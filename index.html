@@ -27,7 +27,7 @@
         <script type="text/javascript" src="js/main.js"></script>
         <script>
 
-            document.getElementById('version').innerHTML+=VERSION.charAt(0)+VERSION.substring(1,VERSION.length).toLowerCase()+" version detected"; //Changing the webpage title
+            document.getElementById('version').innerHTML+=(SCREEN.isTouch ? "Mobile" : "Desktop")+" version detected"; //Changing the webpage title
 
             var container=document.getElementById("container");
             parallaxeElement(container);

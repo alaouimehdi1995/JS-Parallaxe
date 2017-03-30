@@ -1,11 +1,6 @@
 /**
- * Created by mehdi on 07/03/17.
+ * Created by Mehdi ALAOUI on 07/03/17. All rights reserved.
  */
-var SCREEN={
-    width : window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-    height : window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-};
-
 
 function parallaxe(ELEMENT){
 
