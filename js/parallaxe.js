@@ -1,15 +1,15 @@
 /**
  * Created by mehdi on 07/03/17.
  */
-var screen={
+var SCREEN={
     width : window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
     height : window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
 };
 
 
-function parallaxe(element,moveDegree,invert){
+function parallaxe(element,MVDEGREE,INVERT){
 
-    var initial={
+    var INITIALPOSITION={
         x:parseFloat(element.style.left),
         y:parseFloat(element.style.top)
     };
@@ -17,17 +17,17 @@ function parallaxe(element,moveDegree,invert){
     document.addEventListener('mousemove',function(e){
 
         var position={              //position.x and position.y are relative cursor position from window's center
-            x:e.clientX-screen.width/2,
-            y:e.clientY-screen.height/2
+            x:e.clientX-SCREEN.width/2,
+            y:e.clientY-SCREEN.height/2
         };
 
-        if(invert){
+        if(INVERT){
             position.x=-position.x;
             position.y=-position.y;
         }
 
-        element.style.top=initial.y+position.y*(moveDegree)/200+"px";
-        element.style.left=initial.x+position.x*(moveDegree)/200+"px";
+        element.style.top=INITIALPOSITION.y+position.y*(MVDEGREE)/200+"px";
+        element.style.left=INITIALPOSITION.x+position.x*(MVDEGREE)/200+"px";
 
 
 

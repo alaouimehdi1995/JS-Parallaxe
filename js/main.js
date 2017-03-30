@@ -1,28 +1,34 @@
-function parallaxeElement(element,version) {
-    var layers = container.getElementsByClassName("layer");
+function parallaxeElement(ELEMENT,VERSION) {
+    
+    var LAYERS = ELEMENT.getElementsByClassName("layer");
 
-    for (var i = 0; i < layers.length; i++) {
+    for (var i = 0; i < LAYERS.length; i++) {
 
-        layers[i].style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
+        LAYERS[i].style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
 
-        layers[i].style.top =parseFloat(window.getComputedStyle(layers[0],null).top) + parseFloat(window.getComputedStyle(container,null).paddingTop) + "px";
-        layers[i].style.left = parseFloat(window.getComputedStyle(layers[0],null).left) + parseFloat(window.getComputedStyle(container,null).paddingLeft) + "px";
-
-
-        var invert = layers[i].getAttribute("invert") === null ? false : (layers[i].getAttribute("invert") != "false");
-        if(version==="desktop")
-            parallaxe(layers[i], parseFloat(layers[i].getAttribute("degree")), invert);
+        LAYERS[i].style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(ELEMENT,null).paddingTop) + "px";
+        LAYERS[i].style.left = parseFloat(window.getComputedStyle(LAYERS[0],null).left) + parseFloat(window.getComputedStyle(ELEMENT,null).paddingLeft) + "px";
+        
+        var INVERT = LAYERS[i].getAttribute("invert") === null ? false : (LAYERS[i].getAttribute("invert") != "false");
+        var DEGREE = LAYERS[i].getAttribute("degree") === null ? 1 : parseFloat(LAYERS[i].getAttribute("degree"));
+        
+        if(VERSION==="MOBILE") {
+            var SENSITIVITY = LAYERS[i].getAttribute("sensitivity") === null ? null : parseFloat(LAYERS[i].getAttribute("sensitivity"));
+            mobileParallaxe(LAYERS[i], DEGREE, INVERT, SENSITIVITY);
+        }
         else
-            mobileParallaxe(layers[i], parseFloat(layers[i].getAttribute("degree")), invert);
+            parallaxe(LAYERS[i], DEGREE, INVERT);
+        
+
 
     }
 }
 
-function executeParallaxeOn(container) {
+function executeParallaxeOn(CONTAINER) {
 
-    parallaxeElement(container,"desktop");
+    parallaxeElement(CONTAINER,"DESKTOP");
 }
-function executeMobileParallaxeOn(container) {
+function executeMobileParallaxeOn(CONTAINER) {
 
-    parallaxeElement(container,"mobile");
+    parallaxeElement(CONTAINER,"MOBILE");
 }

@@ -4,57 +4,54 @@ function truncate(number,precision){ //it returns the number with 'precision' nu
 }
 
 
-function mobileParallaxe(element,moveDegree,invert,sensibility){
-    if(!sensibility){
-        sensibility=0.9;
+function mobileParallaxe(element,MVDEGREE,INVERT,SENSITIVITY){
+    if(!SENSITIVITY){
+        SENSITIVITY=0.9;
     }
-    var initialAccelerometer={
+    var INITIALPOSITION={                                       //We save the initial css POSITION of the element
+        x:parseFloat(element.style.left),
+        y:parseFloat(element.style.top)
+    };
+    var INITIALACCELEROMETER={
         x:null,
         y:null,
-        isFirst:true
+        firstTime:true
     };
-    window.addEventListener('devicemotion', function (e) { //We save the initial device's position
-        if(initialAccelerometer.isFirst){
-            initialAccelerometer.x=parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.x,4));
-            initialAccelerometer.y=parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.y,4));
-            initialAccelerometer.isFirst=false;
+    window.addEventListener('devicemotion', function (e) { //We save the initial device's POSITION
+        if(INITIALACCELEROMETER.firstTime){
+            INITIALACCELEROMETER.x=parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.x,4));
+            INITIALACCELEROMETER.y=parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.y,4));
+            INITIALACCELEROMETER.firstTime=false;
         }
 
     }, false);
 
 
-    var initial={                                       //We save the initial css position of the element
-        x:parseFloat(element.style.left),
-        y:parseFloat(element.style.top)
-    };
+    
 
     window.addEventListener('devicemotion',function(e){
-
-
-        var position={              //position.x and position.y are relative cursor position from window's center
-            x:parseInt(sensibility*parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.x-initialAccelerometer.x,3))),
-            y:parseInt(sensibility*parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.y-initialAccelerometer.y,3)))
+        
+        var POSITION={              //POSITION.x and POSITION.y are relative cursor POSITION from window's center
+            x:parseInt(SENSITIVITY*parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.x-INITIALACCELEROMETER.x,3))),
+            y:parseInt(SENSITIVITY*parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.y-INITIALACCELEROMETER.y,3)))
         };
 
         /*
         var txt=document.getElementById("coord");
-        txt.innerHTML="DeviceMotionEvent:(first(x:"+initialAccelerometer.x+",y:"+initialAccelerometer.y+"))<br/>"
-        txt.innerHTML+="\tAccelerometre:<br/>x:" +position.x +"<br/>\ty:" +position.y;
+        txt.innerHTML="DeviceMotionEvent:(first(x:"+INITIALACCELEROMETER.x+",y:"+INITIALACCELEROMETER.y+"))<br/>"
+        txt.innerHTML+="\tAccelerometre:<br/>x:" +POSITION.x +"<br/>\ty:" +POSITION.y;
         */
 
-        position.y=-position.y;
-        if(invert){
-            position.x=-position.x;
-            position.y=-position.y;
+        POSITION.y=-POSITION.y;
+        if(INVERT){
+            POSITION.x=-POSITION.x;
+            POSITION.y=-POSITION.y;
         }
 
-        element.style.top=initial.y+position.y*(moveDegree)/50+"px";
-        element.style.left=initial.x+position.x*(moveDegree)/50+"px";
-
-
-
+        element.style.top=INITIALPOSITION.y+POSITION.y*(MVDEGREE)/50+"px";
+        element.style.left=INITIALPOSITION.x+POSITION.x*(MVDEGREE)/50+"px";
+        
     },false);
-
-
+    
 }
 
