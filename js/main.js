@@ -2,18 +2,6 @@
  * Created by Mehdi ALAOUI on 07/03/17. All rights reserved.
  */
 
-var SCREEN={
-    width : window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-    height : window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
-    isTouch:null,
-    isLandscape:null,
-    landscapeModeUp:null,
-    detectMode:function(){
-        this.isTouch=('ontouchstart' in document.documentElement);      //This instruction detects if there is a touchscreen
-        this.isLandscape=(this.width >= this.height);                   //This instruction detects if we are in portrait or landscape mode
-    }
-};
-
 SCREEN.detectMode();
 
 function parallaxeElement(CONTAINER) {
