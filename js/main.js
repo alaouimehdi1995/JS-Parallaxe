@@ -1,5 +1,13 @@
-function parallaxeElement(ELEMENT,VERSION) {
-    
+var VERSION;
+//If there is a touchscreen, we use the device's gyroscope. Else, we use the mouse move event
+
+if('ontouchstart' in document.documentElement) //This instruction detects if there is a touchscreen
+    VERSION="MOBILE";
+else
+    VERSION="DESKTOP";
+
+function parallaxeElement(ELEMENT) {
+
     var LAYERS = ELEMENT.getElementsByClassName("layer");
 
     for (var i = 0; i < LAYERS.length; i++) {
@@ -11,24 +19,15 @@ function parallaxeElement(ELEMENT,VERSION) {
         
         var INVERT = LAYERS[i].getAttribute("invert") === null ? false : (LAYERS[i].getAttribute("invert") != "false");
         var DEGREE = LAYERS[i].getAttribute("degree") === null ? 1 : parseFloat(LAYERS[i].getAttribute("degree"));
-        
-        if(VERSION==="MOBILE") {
+
+
+        if(VERSION=="DESKTOP")
+            parallaxe(LAYERS[i], DEGREE, INVERT);
+        else{
             var SENSITIVITY = LAYERS[i].getAttribute("sensitivity") === null ? null : parseFloat(LAYERS[i].getAttribute("sensitivity"));
             mobileParallaxe(LAYERS[i], DEGREE, INVERT, SENSITIVITY);
         }
-        else
-            parallaxe(LAYERS[i], DEGREE, INVERT);
-        
-
-
     }
 }
 
-function executeParallaxeOn(CONTAINER) {
 
-    parallaxeElement(CONTAINER,"DESKTOP");
-}
-function executeMobileParallaxeOn(CONTAINER) {
-
-    parallaxeElement(CONTAINER,"MOBILE");
-}
