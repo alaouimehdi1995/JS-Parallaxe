@@ -4,24 +4,28 @@ function truncateNumber(number,precision){ //it returns the number with 'precisi
 }
 
 
-function mobileParallaxe(element,MVDEGREE,INVERT,SENSITIVITY){
-    if(!SENSITIVITY){
-        SENSITIVITY=0.9;
-    }
-    var INITIALPOSITION={                                       //We save the initial css POSITION of the element
-        x:parseFloat(element.style.left),
-        y:parseFloat(element.style.top)
+function mobileParallaxe(ELEMENT){
+
+    if(!ELEMENT.SENSITIVITY)        //If the user doesn't specified a sensitivity, it gets the default value of 0.9
+        ELEMENT.SENSITIVITY=0.9;
+
+    var INITIAL={
+        POSITION:{
+            x:parseFloat(ELEMENT.LAYER.style.left),
+            y:parseFloat(ELEMENT.LAYER.style.top)
+        },
+        ACCELEROMETER:{
+            x:null,
+            y:null,
+            firstTime:true
+        }
     };
-    var INITIALACCELEROMETER={
-        x:null,
-        y:null,
-        firstTime:true
-    };
-    window.addEventListener('devicemotion', function (e) { //We save the initial device's POSITION
-        if(INITIALACCELEROMETER.firstTime){
-            INITIALACCELEROMETER.x=parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.x,4));
-            INITIALACCELEROMETER.y=parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.y,4));
-            INITIALACCELEROMETER.firstTime=false;
+
+    window.addEventListener('devicemotion', function (e) { //gets the initial device's accelerometer position
+        if(INITIAL.ACCELEROMETER.firstTime){
+            INITIAL.ACCELEROMETER.x=parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.x,4));
+            INITIAL.ACCELEROMETER.y=parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.y,4));
+            INITIAL.ACCELEROMETER.firstTime=false;
         }
 
     }, false);
@@ -29,26 +33,21 @@ function mobileParallaxe(element,MVDEGREE,INVERT,SENSITIVITY){
 
     
 
-    window.addEventListener('devicemotion',function(e){
+    window.addEventListener('devicemotion',function(e){ // When the user moves the device
         
-        var POSITION={              //POSITION.x and POSITION.y are relative cursor POSITION from window's center
-            x:parseInt(SENSITIVITY*parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.x-INITIALACCELEROMETER.x,3))),
-            y:parseInt(SENSITIVITY*parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.y-INITIALACCELEROMETER.y,3)))
+        var CURRENT_POSITION={              //CURRENT_POSITION.x and CURRENT_POSITION.y are the difference between the initial position and the actual one
+            x:parseInt(ELEMENT.SENSITIVITY*parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.x-INITIAL.ACCELEROMETER.x,3))),
+            y:parseInt(ELEMENT.SENSITIVITY*parseInt(truncateNumber(6*Math.PI*e.accelerationIncludingGravity.y-INITIAL.ACCELEROMETER.y,3)))
         };
 
-        /*
-        var txt=document.getElementById("coord");
-        txt.innerHTML="DeviceMotionEvent:(first(x:"+INITIALACCELEROMETER.x+",y:"+INITIALACCELEROMETER.y+"))<br/>"
-        txt.innerHTML+="\tAccelerometre:<br/>x:" +POSITION.x +"<br/>\ty:" +POSITION.y;
-        */
         
-        if(INVERT)
-            POSITION.x=-POSITION.x;
+        if(ELEMENT.INVERT) //If we want an inverted effect
+            CURRENT_POSITION.x=-CURRENT_POSITION.x;
         else
-            POSITION.y=-POSITION.y;
+            CURRENT_POSITION.y=-CURRENT_POSITION.y;
 
-        element.style.top=INITIALPOSITION.y+POSITION.y*(MVDEGREE)/50+"px";
-        element.style.left=INITIALPOSITION.x+POSITION.x*(MVDEGREE)/50+"px";
+        ELEMENT.LAYER.style.top=INITIAL.POSITION.y+CURRENT_POSITION.y*(ELEMENT.DEGREE)/50+"px";
+        ELEMENT.LAYER.style.left=INITIAL.POSITION.x+CURRENT_POSITION.x*(ELEMENT.DEGREE)/50+"px";
         
     },false);
     

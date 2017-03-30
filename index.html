@@ -11,14 +11,14 @@
 
 
         <div class="container" style="width:55%;border: none">
-            <h3 id="version" class="title">Version </h3><br/>
+            <h3 id="version" class="title"></h3><br/>
             <div id="container" class="container" style="width:95%;">
-                <img class="layer" degree="2" src="img/layer1.png" style="opacity: 0.15">
-                <img class="layer" degree="4" src="img/layer2.png" style="opacity: 0.30">
-                <img class="layer" degree="8" src="img/layer3.png" style="opacity: 0.45">
-                <img class="layer" degree="12" src="img/layer4.png" style="opacity: 0.60">
-                <img class="layer" degree="16" src="img/layer5.png" style="opacity: 0.75">
-                <img class="layer" degree="20" src="img/layer6.png" style="opacity: 0.90">
+                <img class="layer" data-opacity="0.15" data-degree="2" src="img/layer1.png">
+                <img class="layer" data-opacity="0.30" data-degree="4" src="img/layer2.png">
+                <img class="layer" data-opacity="0.45" data-degree="8" src="img/layer3.png">
+                <img class="layer" data-opacity="0.60" data-degree="12" src="img/layer4.png">
+                <img class="layer" data-opacity="0.75" data-degree="16" src="img/layer5.png">
+                <img class="layer" data-opacity="0.90" data-degree="20" src="img/layer6.png">
             </div>
         </div>
         <h3 class="title"><br/>Realised by: Mehdi ALAOUI</h3>
@@ -27,11 +27,13 @@
         <script type="text/javascript" src="js/main.js"></script>
         <script>
 
-            document.getElementById('version').innerHTML+=VERSION.toLowerCase()+" detectée"; //Changing the webpage title
+            document.getElementById('version').innerHTML+=VERSION.charAt(0)+VERSION.substring(1,VERSION.length).toLowerCase()+" version detected"; //Changing the webpage title
 
             var container=document.getElementById("container");
             parallaxeElement(container);
-
+        /*
+        * Reste à détecter l'orientation du device (portrait ou paysage pour inverser les x et les y)
+        * */
         </script>
 
     </body>

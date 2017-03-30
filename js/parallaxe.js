@@ -7,11 +7,11 @@ var SCREEN={
 };
 
 
-function parallaxe(element,MVDEGREE,INVERT){
+function parallaxe(ELEMENT){
 
     var INITIALPOSITION={
-        x:parseFloat(element.style.left),
-        y:parseFloat(element.style.top)
+        x:parseFloat(ELEMENT.LAYER.style.left),
+        y:parseFloat(ELEMENT.LAYER.style.top)
     };
 
     document.addEventListener('mousemove',function(e){
@@ -21,13 +21,13 @@ function parallaxe(element,MVDEGREE,INVERT){
             y:e.clientY-SCREEN.height/2
         };
 
-        if(INVERT){
+        if(ELEMENT.INVERT){
             position.x=-position.x;
             position.y=-position.y;
         }
 
-        element.style.top=INITIALPOSITION.y+position.y*(MVDEGREE)/200+"px";
-        element.style.left=INITIALPOSITION.x+position.x*(MVDEGREE)/200+"px";
+        ELEMENT.LAYER.style.top=INITIALPOSITION.y+position.y*(ELEMENT.DEGREE)/200+"px";
+        ELEMENT.LAYER.style.left=INITIALPOSITION.x+position.x*(ELEMENT.DEGREE)/200+"px";
 
 
 
