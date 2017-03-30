@@ -20,17 +20,19 @@ function parallaxeElement(CONTAINER) {
             DEGREE: null,
             SCALE_X: 0,
             SCALE_Y: 0,
-            SENSITIVITY: null
+            SENSITIVITY: null,
+            extract_data:function(){
+                this.LAYER= LAYERS[i];
+                this.OPACITY= this.LAYER.getAttribute("data-opacity") === null ? (window.getComputedStyle(this.LAYER,null).opacity === null ? 1 : window.getComputedStyle(this.LAYER,null).opacity) : parseFloat(this.LAYER.getAttribute("data-opacity"));
+                this.INVERT= this.LAYER.getAttribute("data-invert") === null ? false : (this.LAYER.getAttribute("data-invert") != "false");
+                this.DEGREE= this.LAYER.getAttribute("data-degree") === null ? 1 : parseFloat(this.LAYER.getAttribute("data-degree"));
+                this.SCALE_X= this.LAYER.getAttribute("data-scale-x") === null ? 0 : parseFloat(this.LAYER.getAttribute("data-scale-x"));
+                this.SCALE_Y= this.LAYER.getAttribute("data-scale-y") === null ? 0 : parseFloat(this.LAYER.getAttribute("data-scale-y"));
+                this.SENSITIVITY= this.LAYER.getAttribute("sensitivity") === null ? null : parseFloat(this.LAYER.getAttribute("sensitivity"));
+            }
         };
 
-        ELEMENT.LAYER= LAYERS[i];
-        ELEMENT.OPACITY= ELEMENT.LAYER.getAttribute("data-opacity") === null ? (window.getComputedStyle(ELEMENT.LAYER,null).opacity === null ? 1 : window.getComputedStyle(ELEMENT.LAYER,null).opacity) : parseFloat(ELEMENT.LAYER.getAttribute("data-opacity"));
-        ELEMENT.INVERT= ELEMENT.LAYER.getAttribute("data-invert") === null ? false : (ELEMENT.LAYER.getAttribute("data-invert") != "false");
-        ELEMENT.DEGREE= ELEMENT.LAYER.getAttribute("data-degree") === null ? 1 : parseFloat(ELEMENT.LAYER.getAttribute("data-degree"));
-        ELEMENT.SCALE_X= ELEMENT.LAYER.getAttribute("data-scale-x") === null ? 0 : parseFloat(ELEMENT.LAYER.getAttribute("data-scale-x"));
-        ELEMENT.SCALE_Y= ELEMENT.LAYER.getAttribute("data-scale-y") === null ? 0 : parseFloat(ELEMENT.LAYER.getAttribute("data-scale-y"));
-        ELEMENT.SENSITIVITY= ELEMENT.LAYER.getAttribute("sensitivity") === null ? null : parseFloat(ELEMENT.LAYER.getAttribute("sensitivity"));
-
+        ELEMENT.extract_data();
 
         ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
         ELEMENT.LAYER.style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingTop) + ELEMENT.SCALE_Y + "px";
