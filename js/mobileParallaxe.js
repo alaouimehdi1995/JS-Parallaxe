@@ -1,5 +1,5 @@
 
-function truncate(number,precision){
+function truncate(number,precision){ //it returns the number with 'precision' numbers after comma
     return parseFloat(parseInt(number*Math.pow(100,precision))/Math.pow(100,precision));
 }
 
@@ -36,9 +36,11 @@ function mobileParallaxe(element,moveDegree,invert,sensibility){
             y:parseInt(sensibility*parseInt(truncate(6*Math.PI*e.accelerationIncludingGravity.y-initialAccelerometer.y,3)))
         };
 
+        /*
         var txt=document.getElementById("coord");
         txt.innerHTML="DeviceMotionEvent:(first(x:"+initialAccelerometer.x+",y:"+initialAccelerometer.y+"))<br/>"
-        txt.innerHTML+="\tAccelerometre:<br/>x:" +position.x +"<br/>\ty:" +position.y;//+"<br/>\tz:";
+        txt.innerHTML+="\tAccelerometre:<br/>x:" +position.x +"<br/>\ty:" +position.y;
+        */
 
         position.y=-position.y;
         if(invert){
