@@ -8,9 +8,21 @@ var SCREEN={
     isTouch:null,
     isLandscape:null,
     landscapeModeUp:null,
+    firstTime:true,
+    INITIAL:{
+        x:null,
+        y:null
+    },
     detectMode:function(){
         this.isTouch=('ontouchstart' in document.documentElement);      //This instruction detects if there is a touchscreen
         this.isLandscape=(this.width >= this.height);                   //This instruction detects if we are in portrait or landscape mode
+        if(this.isTouch){
+            if(SCREEN.firstTime){
+                window.addEventListener('devicemotion', getInitialPosition, false);
+
+
+            }
+        }
     }
 };
 
@@ -19,32 +31,33 @@ function truncateNumber(number,precision){ //it returns the number with 'precisi
     return parseFloat(parseInt(number*Math.pow(100,precision))/Math.pow(100,precision));
 }
 
-
 function getInitialPosition(e) {            //gets the initial device's accelerometer position
-    if(INITIAL.ACCELEROMETER.firstTime){    //if it's the first time, we catch the initial position
+    if(SCREEN.firstTime){                   //if it's the first time, we catch the initial position
         if(SCREEN.isLandscape)
             SCREEN.landscapeModeUp=(e.accelerationIncludingGravity.x>0);
 
         var ACCEL=getActualPosition(e);
-        INITIAL.ACCELEROMETER.x=parseInt(truncateNumber(6*Math.PI*ACCEL.x,4));
-        INITIAL.ACCELEROMETER.y=parseInt(truncateNumber(6*Math.PI*ACCEL.y,4));
-        INITIAL.ACCELEROMETER.firstTime=false;
-    }
-    else{                                   //Else, we remove the listener
+        SCREEN.INITIAL.x=parseInt(truncateNumber(6*Math.PI*ACCEL.x,4));
+        SCREEN.INITIAL.y=parseInt(truncateNumber(6*Math.PI*ACCEL.y,4));
+        SCREEN.firstTime=false;
         window.removeEventListener('devicemotion', getInitialPosition);
     }
+
 }
 
 function getActualPosition(e){
+
     var ACTUAL_POSITION={x:e.accelerationIncludingGravity.x,y:e.accelerationIncludingGravity.y};
+
     if(SCREEN.isLandscape){
-        if(SCREEN.landscapeModeUp)      //Differenciating between the 2 landscape's modes(up and down)
+        if(SCREEN.landscapeModeUp)//Differenciating between the 2 landscape's modes(up and down)
             return {x:-ACTUAL_POSITION.y,y:ACTUAL_POSITION.x};
+
         else
             return {x:ACTUAL_POSITION.y,y:-ACTUAL_POSITION.x};
 
     }
-    else{
+    else
         return ACTUAL_POSITION;
-    }
+
 }

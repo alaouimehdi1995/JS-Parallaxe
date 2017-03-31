@@ -46,5 +46,3 @@ function parallaxeElement(CONTAINER) {
 
     }
 }
-
-
