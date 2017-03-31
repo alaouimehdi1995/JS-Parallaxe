@@ -26,17 +26,14 @@ function parallaxeElement(CONTAINER) {
                 this.DEGREE= this.LAYER.getAttribute("data-degree") === null ? 1 : parseFloat(this.LAYER.getAttribute("data-degree"));
                 this.SCALE_X= this.LAYER.getAttribute("data-scale-x") === null ? 0 : parseFloat(this.LAYER.getAttribute("data-scale-x"));
                 this.SCALE_Y= this.LAYER.getAttribute("data-scale-y") === null ? 0 : parseFloat(this.LAYER.getAttribute("data-scale-y"));
-                this.SENSITIVITY= this.LAYER.getAttribute("sensitivity") === null ? null : parseFloat(this.LAYER.getAttribute("sensitivity"));
+                this.SENSITIVITY= this.LAYER.getAttribute("data-sensitivity") === null ? null : parseFloat(this.LAYER.getAttribute("data-sensitivity"));
             }
         };
-
         ELEMENT.extract_data();
-
         ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
         ELEMENT.LAYER.style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingTop) + ELEMENT.SCALE_Y + "px";
         ELEMENT.LAYER.style.left = parseFloat(window.getComputedStyle(LAYERS[0],null).left) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingLeft) + ELEMENT.SCALE_X + "px";
         ELEMENT.LAYER.style.opacity=ELEMENT.OPACITY;
-
         if(SCREEN.isTouch)
             mobileParallaxe(ELEMENT);
         else
