@@ -33,7 +33,7 @@ function parallaxeElement(CONTAINER) {
                 this.SCALE_Y= this.LAYER.getAttribute("data-scale-y") === null ? 0 : parseFloat(this.LAYER.getAttribute("data-scale-y"));
                 this.SENSITIVITY= this.LAYER.getAttribute("data-sensitivity") === null ? null : parseFloat(this.LAYER.getAttribute("data-sensitivity"));
 
-                if(SCREEN.isTouch){
+                if(SCREEN.touchScreenSupport){
                     if(!this.SENSITIVITY)        //If the user doesn't specified a sensitivity, it gets the default value of 0.9
                         this.SENSITIVITY=0.7;
                     this.SENSITIVITY=10+20/(this.SENSITIVITY);
@@ -54,7 +54,7 @@ function parallaxeElement(CONTAINER) {
 
     }
 
-    if(SCREEN.isTouch)
+    if(SCREEN.touchScreenSupport)
         mobileParallaxe(ELEMENTS);
     else
         parallaxe(ELEMENTS);

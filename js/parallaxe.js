@@ -34,17 +34,24 @@ function mobileParallaxe(ELEMENTS){
             x:parseInt(truncateNumber(6*Math.PI*CURRENT_POSITION.x-SCREEN.INITIAL.x,3)),
             y:parseInt(truncateNumber(6*Math.PI*CURRENT_POSITION.y-SCREEN.INITIAL.y,3))
         };
+
         for(var i=0;i<ELEMENTS.length;i++) {
-
             //the layers don't move until rotationRate reachs the sensitivity
-            if ((!SCREEN.isLandscape && (Math.abs(e.rotationRate.beta * 100) > ELEMENTS[i].SENSITIVITY)) || (SCREEN.isLandscape && (Math.abs(e.rotationRate.alpha * 100) > ELEMENTS[i].SENSITIVITY))) {
+            if(SCREEN.rotationRateSupport){
+                if ((!SCREEN.isLandscape && (Math.abs(e.rotationRate.beta * 100) > ELEMENTS[i].SENSITIVITY)) || (SCREEN.isLandscape && (Math.abs(e.rotationRate.alpha * 100) > ELEMENTS[i].SENSITIVITY))) {
 
-                ELEMENTS[i].LAYER.style.left = ELEMENTS[i].INITIAL.x + (ELEMENTS[i].INVERT ? -PIXELS_TO_MOVE.x : PIXELS_TO_MOVE.x) * (ELEMENTS[i].DEGREE) / 20 + "px";
+                    ELEMENTS[i].LAYER.style.left = ELEMENTS[i].INITIAL.x + (ELEMENTS[i].INVERT ? -PIXELS_TO_MOVE.x : PIXELS_TO_MOVE.x) * (ELEMENTS[i].DEGREE) / 20 + "px";
+                }
+                if ((!SCREEN.isLandscape && (Math.abs(e.rotationRate.alpha * 100) > ELEMENTS[i].SENSITIVITY)) || (SCREEN.isLandscape && (Math.abs(e.rotationRate.beta * 100) > ELEMENTS[i].SENSITIVITY))) {
+
+                    ELEMENTS[i].LAYER.style.top = ELEMENTS[i].INITIAL.y + (ELEMENTS[i].INVERT ? PIXELS_TO_MOVE.y : -PIXELS_TO_MOVE.y) * (ELEMENTS[i].DEGREE) / 20 + "px";
+                }
             }
-            if ((!SCREEN.isLandscape && (Math.abs(e.rotationRate.alpha * 100) > ELEMENTS[i].SENSITIVITY)) || (SCREEN.isLandscape && (Math.abs(e.rotationRate.beta * 100) > ELEMENTS[i].SENSITIVITY))) {
-
+            else{
+                ELEMENTS[i].LAYER.style.left = ELEMENTS[i].INITIAL.x + (ELEMENTS[i].INVERT ? -PIXELS_TO_MOVE.x : PIXELS_TO_MOVE.x) * (ELEMENTS[i].DEGREE) / 20 + "px";
                 ELEMENTS[i].LAYER.style.top = ELEMENTS[i].INITIAL.y + (ELEMENTS[i].INVERT ? PIXELS_TO_MOVE.y : -PIXELS_TO_MOVE.y) * (ELEMENTS[i].DEGREE) / 20 + "px";
             }
+
         }
 
     },false);
