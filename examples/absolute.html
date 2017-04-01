@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallaxe Effect</title>
+</head>
+    <body>
+        <h2 style="text-align: center">Parallaxe Effect: click to activate parallaxe</h2>
+        <div id="container" style="width:100%;height: 500px;overflow: hidden;">
+            <img class="layer" data-degree="1"  src="../ex_img/bg.jpg"  style="top:-20px;left:-30px;width: 110%;">
+            <img class="layer" data-degree="12"  data-invert="true" src="../ex_img/home2.png" style="position: absolute;top: 41%;left: 70%;">
+            <img class="layer" data-degree="10"  data-invert="true" src="../ex_img/home1.png" style="position: absolute;top: 37%;left: 50%;">
+            <img class="layer" data-degree="8"   src="../ex_img/plane.png" style="position: absolute;top: 45%;left: 42%;">
+            <img class="layer" data-degree="6"   src="../ex_img/person.png" style="position: absolute;top: 50%;left: 45%;">
+        </div>
+        <p style="text-align: center">Realised by: Mehdi ALAOUI | Graphics taken from <a href="http://www.github.com/404">Github</a></p>
+        <script type="text/javascript" src="../js/functions.js"></script>
+        <script type="text/javascript" src="../js/parallaxe.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script>
+
+            var container=document.getElementById("container");
+            document.addEventListener("click",function(){parallaxeElement(container);},false);
+
+
+        </script>
+    </body>
+</html>

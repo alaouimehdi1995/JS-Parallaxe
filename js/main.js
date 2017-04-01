@@ -44,9 +44,19 @@ function parallaxeElement(CONTAINER) {
         };
         ELEMENT.extract_data();
         //to improve:We should calculate top and left (in case the first element was not positionned with the container
-        ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
-        ELEMENT.LAYER.style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingTop) + ELEMENT.SCALE_Y + "px";
-        ELEMENT.LAYER.style.left = parseFloat(window.getComputedStyle(LAYERS[0],null).left) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingLeft) + ELEMENT.SCALE_X + "px";
+        if(ELEMENT.LAYER.style.position==="absolute"){
+            ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
+            ELEMENT.LAYER.style.top = parseFloat(window.getComputedStyle(ELEMENT.LAYER,null).top) + ELEMENT.SCALE_Y + "px";
+            ELEMENT.LAYER.style.left = parseFloat(window.getComputedStyle(ELEMENT.LAYER,null).left) + ELEMENT.SCALE_X + "px";
+        }
+        else{
+            ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
+            ELEMENT.LAYER.style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingTop) + ELEMENT.SCALE_Y + "px";
+            ELEMENT.LAYER.style.left = parseFloat(window.getComputedStyle(LAYERS[0],null).left) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingLeft)  + ELEMENT.SCALE_X + "px";
+        }
+        //ELEMENT.LAYER.style.position = i ? "absolute" : "relative"; //First Element will be relative, and all others absolute
+        //ELEMENT.LAYER.style.top =parseFloat(window.getComputedStyle(LAYERS[0],null).top) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingTop) + ELEMENT.SCALE_Y + "px";
+        //ELEMENT.LAYER.style.left = parseFloat(window.getComputedStyle(LAYERS[0],null).left) + parseFloat(window.getComputedStyle(CONTAINER,null).paddingLeft) + ELEMENT.SCALE_X + "px";
         ELEMENT.LAYER.style.opacity=ELEMENT.OPACITY;
         ELEMENT.INITIAL.x=parseFloat(ELEMENT.LAYER.style.left);
         ELEMENT.INITIAL.y=parseFloat(ELEMENT.LAYER.style.top);

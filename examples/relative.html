@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Parallaxe | Mehdi ALAOUI</title>
+        <link rel="stylesheet" href="../css/style.css" />
+    </head>
+    <body>
+
+        <h2 class="title" style="font-size: 38px;">Parallaxe effect</h2><br/>
+
+        <div class="container" style="width:55%;border: none">
+            <h3 id="version" class="title"></h3><br/>
+            <div id="container" class="container" style="width:95%;">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.15" data-degree="2" src="../img/layer1.png">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.30" data-degree="4" src="../img/layer2.png">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.45" data-degree="8" src="../img/layer3.png">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.60" data-degree="12" src="../img/layer4.png">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.75" data-degree="16" src="../img/layer5.png">
+                <img class="layer" data-sensitivity="0.7" data-opacity="0.90" data-degree="20" src="../img/layer6.png">
+            </div>
+        </div>
+        <h3 class="title"><br/>Realised by: Mehdi ALAOUI</h3>
+        <script type="text/javascript" src="../js/functions.js"></script>
+        <script type="text/javascript" src="../js/parallaxe.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script>
+
+            document.getElementById('version').innerHTML+=(SCREEN.isTouch ? "Mobile" : "Desktop")+" version detected"; //Changing the webpage title
+
+            var container=document.getElementById("container");
+            parallaxeElement(container);
+
+        </script>
+
+    </body>
+</html>
